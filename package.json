@@ -1,0 +1,29 @@
+{
+  "name": "dsh-locale-fr",
+  "version": "1.0.0",
+  "description": "French language pack for the DeepSeek Harness (dsh) web UI. Ships ~1160 UI strings plus a display-level fallback for community plugins that hard-code their labels.",
+  "keywords": ["dsh", "deepseek-harness", "locale", "i18n", "french", "francais", "cordis"],
+  "license": "MIT",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": ["lib", "dictionaries", "cordis.patch.yml", "README.md", "LICENSE"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GaaaorkOrga/dsh-locale-fr.git"
+  },
+  "bugs": { "url": "https://github.com/GaaaorkOrga/dsh-locale-fr/issues" },
+  "homepage": "https://github.com/GaaaorkOrga/dsh-locale-fr#readme",
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": {
+      "inject": ["@deepseek-ai/dsh-client-locale"],
+      "platform": "web"
+    }
+  }
+}

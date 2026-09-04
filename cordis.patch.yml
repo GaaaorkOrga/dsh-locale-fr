@@ -1,0 +1,5 @@
+# Mounts the French language pack into the profile's plugin stack.
+# The plugin has no settings: everything it does lives in its dictionaries.
+- insert:
+    - id: dsh-locale-fr
+      name: 'dsh-locale-fr'
