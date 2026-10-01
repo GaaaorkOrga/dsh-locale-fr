@@ -1,0 +1,20 @@
+# Parité de `dfr build-client` avec tools/build-client.py : lib/client.js doit être identique à l'octet.
+[defaut]
+delai_secs = 60
+env = { PYTHONDONTWRITEBYTECODE = "1" }
+ignorer_fichiers = ["Library/Caches"]
+
+[[cas]]
+nom = "mini"
+dossier_entrees = "entrees/mini"
+args = ["{HOME}"]
+
+[[cas]]
+nom = "vide"
+dossier_entrees = "entrees/vide"
+args = ["{HOME}"]
+
+[[cas]]
+nom = "reel"
+dossier_entrees = "entrees/reel"
+args = ["{HOME}"]

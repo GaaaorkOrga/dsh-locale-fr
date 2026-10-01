@@ -55,10 +55,13 @@ locale:
 ## How it is built
 
 `dictionaries/fr.json` is the single source of truth. `lib/client.js` is **generated** from it —
-never edit the generated file:
+never edit the generated file. The generator is the Rust tool `dfr` (`crates/dfr-outils`; the
+browser module itself is the template `templates/client.js.tpl`, browser code that dsh requires
+to be JavaScript):
 
 ```bash
-python3 tools/build-client.py
+cargo build --release   # once
+target/release/dfr build-client
 ```
 
 ### Adding or fixing a string
@@ -75,13 +78,13 @@ A new dsh release adds strings. They show in English until you harvest and trans
 
 ```bash
 # 1. Harvest the English dictionaries from the dsh you actually RUN
-python3 tools/harvest-dsh-dictionaries.py \
+dfr harvest-dictionaries \
   ~/.npm/_npx/<hash>/node_modules/@deepseek-ai  english.json
 
 # 2. Diff against dictionaries/fr.json, translate the delta however you like,
 #    merge it back into dictionaries/fr.json
 # 3. Rebuild
-python3 tools/build-client.py
+dfr build-client
 ```
 
 Harvest from the version you **run**, not from whatever happens to sit in a cache — namespaces
@@ -92,7 +95,7 @@ and keys move between releases. That mistake cost a debugging round here.
 Nothing in the machinery is French-specific:
 
 1. Copy `dictionaries/fr.json` to `dictionaries/<lang>.json` and translate the values.
-2. In `tools/build-client.py`, change `LANGUAGE` (`id`, `label` in its own language, `fallback`)
+2. In `templates/client.js.tpl`, change `LANGUAGE` (`id`, `label` in its own language, `fallback`)
    and the `"fr"` passed to `locale.register`.
 3. Rebuild, install, done.
 
@@ -126,13 +129,13 @@ Guard rails:
 it should be deleted as soon as either lands. To disable it now, empty the file:
 
 ```bash
-echo '{}' > dictionaries/third-party-fr.json && python3 tools/build-client.py
+echo '{}' > dictionaries/third-party-fr.json && dfr build-client
 ```
 
 To regenerate it for a newer plugin version:
 
 ```bash
-python3 tools/harvest-hardcoded-cjk.py \
+dfr harvest-cjk \
   ~/.dsh/profiles/web/node_modules/@welsione/dsh-model-router/lib/client.js \
   ~/.dsh/profiles/web/node_modules/dsh-model-selector/lib/client/index.js > runs.json
 ```
@@ -158,7 +161,7 @@ until they catch up.
 
 Issues and pull requests welcome — translation fixes, other languages, or taking over
 maintenance. Code comments are in English; the dictionaries are plain JSON, no build chain
-beyond Python 3.
+beyond `cargo build --release` (the `dfr` tool).
 
 ## License
 
@@ -176,7 +179,7 @@ seul fichier livré par l'éditeur.
 - **Installation** : `dsh plugin --profile web add "github:GaaaorkOrga/dsh-locale-fr"`, puis
   choisir **Français** dans Réglages → Général → Langue (dsh 0.1.2+). Sur une version
   antérieure, le français s'applique tout seul.
-- **Corriger un mot** : éditer `dictionaries/fr.json`, relancer `python3 tools/build-client.py`,
+- **Corriger un mot** : éditer `dictionaries/fr.json`, relancer `dfr build-client` (outil Rust, voir plus haut),
   recharger la page. `lib/client.js` est engendré — ne jamais l'éditer à la main.
 - **Une étiquette non traduite** retombe en anglais, jamais en chinois.
 - Une seconde couche traduit l'affichage de deux modules communautaires qui écrivent leurs

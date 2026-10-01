@@ -1,0 +1,16 @@
+# Lu par l'outil `deployer`. Ce dépôt est public : aucun chemin personnel ici.
+# `dfr` est un outil de construction lancé à la main ; il n'est ni service ni démon, donc pas de bascule.
+# Le greffon se branche dans dsh par `dsh plugin --profile web add "link:<dépôt>"` (fait par
+# l'installation du dépôt deepseek-harness, qui porte les chemins locaux).
+projet = "dsh-locale-fr"
+
+[[cible]]
+nom = "dfr"
+type = "lien"
+binaire = "dfr"
+installer_vers = ""
+ancien_point_d_entree = "tools/build-client.py"
+sante = ""
+
+[preuve]
+empreinte_sha256 = true

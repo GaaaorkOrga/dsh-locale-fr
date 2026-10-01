@@ -1,0 +1,17 @@
+# Parité de `dfr harvest-cjk` avec tools/harvest-hardcoded-cjk.py (sortie triée des deux côtés).
+[defaut]
+delai_secs = 60
+env = { PYTHONDONTWRITEBYTECODE = "1" }
+ignorer_fichiers = ["Library/Caches"]
+
+[[cas]]
+nom = "mini"
+args = ["{CAS}/entrees/cjk/a.js"]
+
+[[cas]]
+nom = "deux-fichiers"
+args = ["{CAS}/entrees/cjk/a.js", "{CAS}/entrees/bundles/pkg-a/lib/client.js"]
+
+[[cas]]
+nom = "reel-routeur"
+args = ["{CAS}/entrees/reel-cjk/router-client.js", "{CAS}/entrees/reel-cjk/selector-client.js"]

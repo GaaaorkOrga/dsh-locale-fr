@@ -1,0 +1,15 @@
+# Parité de `dfr harvest-dictionaries` avec tools/harvest-dsh-dictionaries.py.
+[defaut]
+delai_secs = 60
+env = { PYTHONDONTWRITEBYTECODE = "1" }
+ignorer_fichiers = ["Library/Caches"]
+
+[[cas]]
+nom = "mini"
+dossier_entrees = "entrees/bundles"
+args = ["{HOME}", "{HOME}/sortie.json"]
+
+[[cas]]
+nom = "reel"
+dossier_entrees = "entrees/bundles-reels"
+args = ["{HOME}", "{HOME}/sortie.json"]
