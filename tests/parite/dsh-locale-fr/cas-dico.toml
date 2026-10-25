@@ -1,4 +1,4 @@
-# Parité de `dfr harvest-dictionaries` avec tools/harvest-dsh-dictionaries.py.
+# Parité de `dfr harvest-dictionaries` avec tests/reference-ancien/harvest-dsh-dictionaries.py.
 [defaut]
 delai_secs = 60
 env = { PYTHONDONTWRITEBYTECODE = "1" }

@@ -9,7 +9,7 @@ nom = "dfr"
 type = "lien"
 binaire = "dfr"
 installer_vers = ""
-ancien_point_d_entree = "tools/build-client.py"
+ancien_point_d_entree = "tests/reference-ancien/build-client.py"
 sante = ""
 
 [preuve]

@@ -19,6 +19,6 @@ done
 cp "$DSH/profiles/web/node_modules/@welsione/dsh-model-router/lib/client.js" "$T/entrees/reel-cjk/router-client.js" 2>/dev/null || : > "$T/entrees/reel-cjk/router-client.js"
 cp "$DSH/profiles/web/node_modules/dsh-model-selector/lib/client/index.js" "$T/entrees/reel-cjk/selector-client.js" 2>/dev/null || : > "$T/entrees/reel-cjk/selector-client.js"
 (cd "$T" && parite cli --ancien "sh $T/outils/ancien-build.sh" --nouveau "$DFR build-client" --cas "$T/cas-build.toml") || code=1
-(cd "$T" && parite cli --ancien "python3 $RACINE/tools/harvest-dsh-dictionaries.py" --nouveau "$DFR harvest-dictionaries" --cas "$T/cas-dico.toml") || code=1
+(cd "$T" && parite cli --ancien "python3 $RACINE/tests/reference-ancien/harvest-dsh-dictionaries.py" --nouveau "$DFR harvest-dictionaries" --cas "$T/cas-dico.toml") || code=1
 (cd "$T" && parite cli --ancien "sh $T/outils/ancien-cjk.sh" --nouveau "sh $T/outils/nouveau-cjk.sh $DFR" --cas "$T/cas-cjk.toml") || code=1
 exit $code
